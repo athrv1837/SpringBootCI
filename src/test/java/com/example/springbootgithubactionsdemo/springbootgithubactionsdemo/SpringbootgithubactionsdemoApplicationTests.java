@@ -25,4 +25,13 @@ class SpringbootgithubactionsdemoApplicationTests {
             .andExpect(content().string(
                 containsString("Yaay!! you did it XD")));
     }
+
+	@Test
+    public void checkDoesNotContainErrorMessage() throws Exception {
+        this.mockMvc
+            .perform(get("/"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                org.hamcrest.Matchers.not(containsString("Error"))));
+    }
 }
